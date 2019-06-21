@@ -1,0 +1,43 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!--该Dtd 从网络获取 如果网络不通 会导致使用起来的时候会不便-->
+<hibernate-configuration>
+    <session-factory>
+        <!--   核心配置文件     -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernateTest?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">hugo931124</property>
+        <!-- 可以将向数据库发送的sql显示出来 -->
+        <property name="hibernate.show_sql">true</property>
+        <!-- 格式化sql -->
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- hibernate的方言 mysql5 可自动 不用自己写入 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+        <!-- 自动创建表  -->
+        <!--   none 不使用自动建表     -->
+        <!--   create的时候每次删表接着重新建表     -->
+        <!--   create-drop 使用完会把数据表删除 临时表类似     -->
+        <!--   validate 如果没有表 不会创建 只会使用数据库原表 检验映射与表结构是否一致 不一致报错     -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- 用于设置事务提交方式 -->
+        <property name="hibernate.connection.autocommit">false</property>
+
+        <!--    配置C3P0链接    hibernate 3.3之后C3P0单独出来-->
+        <property name="connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
+        <property name="c3p0.min_size">5</property>
+        <property name="c3p0.max_size">20</property>
+        <!--        如果连接池中处于空闲状态超过时限则删除-->
+        <property name="c3p0.timeout">120</property>
+        <!--        每3000s检查空闲连接-->
+        <property name="c3p0.idle_test_period">3000</property>
+
+        <!-- 配置hibernate的映射文件所在位置 即配置类与表进行关联 如果使用 properties 文件配置不能加载该属性 使用addResource单独加载映射文件-->
+        <mapping resource="Customer.hbm.xml"/>
+
+    </session-factory>
+</hibernate-configuration>

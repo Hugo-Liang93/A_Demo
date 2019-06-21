@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.hugo.domain.Customer" table="customer">
+        <!--  设置主键对应关系 name column length type -->
+        <id name="customId" column="cust_id">
+            <!--     自动增长       -->
+            <!--     主键生成策略       -->
+            <generator class="native"></generator>
+        </id>
+        <!-- 普通属性与数据库名称对应 如果属性与名字一致，则column可以不写        -->
+        <property name="name" column="cust_name"></property>
+        <property name="address" column="cust_address"></property>
+        <property name="phoneNumber" column="cust_phonenumber"></property>
+    </class>
+</hibernate-mapping>
